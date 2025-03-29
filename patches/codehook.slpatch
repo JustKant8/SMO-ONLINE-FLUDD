@@ -35,6 +35,9 @@ B59E28 B seadPrintHook // sead::system::print
 4B5E30 B ProjectActorFactory // patches actor factory ctor with custom matching factory
 4CA0E4 BL initPuppetActors
 
+//Fludd Actor Setup
+0041b384 BL initActorWithArchiveNameHook // Scene init hook for actor creation
+
 // Shine Syncing
 // 1CF470 BL shineHook
 

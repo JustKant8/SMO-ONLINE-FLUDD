@@ -38,6 +38,9 @@ class PlayerActorHakoniwa : public PlayerActorBase , public IUseDimension {
         void startPlayerPuppet(void);
         void initPlayer(al::ActorInitInfo const&, PlayerInitInfo const&);
 
+        // added for FLUDD
+        void setNerveOnGround(void);
+
         PlayerInfo *mPlayerInfo; // 0x128
         PlayerConst *mPlayerConst; // 0x130
         PlayerInput *mPlayerInput; //0x138 

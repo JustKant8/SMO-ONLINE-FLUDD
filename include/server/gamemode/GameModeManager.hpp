@@ -8,6 +8,7 @@
 #include "server/gamemode/GameModeInfoBase.hpp"
 #include "server/gamemode/modifiers/ModeModifierBase.hpp"
 
+
 class GameModeManager {
     SEAD_SINGLETON_DISPOSER(GameModeManager)
     GameModeManager();
@@ -51,6 +52,7 @@ private:
     GameModeInfoBase *mModeInfo = nullptr;
     GameModeInitInfo *mLastInitInfo = nullptr;
     ModeModifierBase *mCurModifier = nullptr;
+    
 };
 
 template<class T>

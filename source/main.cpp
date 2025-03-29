@@ -34,6 +34,8 @@
 #include "server/gamemode/GameModeBase.hpp"
 #include "server/hns/HideAndSeekMode.hpp"
 #include "server/gamemode/GameModeManager.hpp"
+//#include "fludd.h"
+//#include "layouts/FluddIcon.h"
 
 static int pInfSendTimer = 0;
 static int gameInfSendTimer = 0;
@@ -306,6 +308,17 @@ void stageInitHook(al::ActorInitInfo *info, StageScene *curScene, al::PlacementI
 
 }
 
+void initActorWithArchiveNameHook(al::LiveActor* actor, al::ActorInitInfo const& initInfo,
+                                  sead::SafeStringBase<char> const& string,
+                                  char const* anotherString) {
+    // Create actors here
+
+    
+
+    // Complete hooked functionn
+    al::initActorWithArchiveName(actor, initInfo, string, anotherString);
+}
+
 PlayerCostumeInfo *setPlayerModel(al::LiveActor *player, const al::ActorInitInfo &initInfo, const char *bodyModel, const char *capModel, al::AudioKeeper *keeper, bool isCloset) {
     Client::sendCostumeInfPacket(bodyModel, capModel);
     return PlayerFunction::initMarioModelActor(player, initInfo, bodyModel, capModel, keeper, isCloset);
@@ -351,6 +364,16 @@ bool hakoniwaSequenceHook(HakoniwaSequence* sequence) {
     bool isYukimaru = !playerBase->getPlayerInfo();
 
     isInGame = !stageScene->isPause();
+
+
+    //FLUDD stuff
+    //Fludd().stageSceneRef = stageScene;
+
+    if (!stageScene->isPause() && !isYukimaru) {
+        
+        //Fludd().updateFludd();
+    }
+
 
     GameModeManager::instance()->setPaused(stageScene->isPause());
     Client::setStageInfo(stageScene->mHolder);
@@ -431,6 +454,8 @@ bool hakoniwaSequenceHook(HakoniwaSequence* sequence) {
             al::stopAllBgm(stageScene, 0);
         }
     }
+
+    
 
     return isFirstStep;
 

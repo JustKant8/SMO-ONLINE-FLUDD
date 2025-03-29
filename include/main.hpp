@@ -50,6 +50,7 @@
 #include "debugMenu.hpp"
 #include "Keyboard.hpp"
 #include "server/DeltaTime.hpp"
+#include "actors/FluddBase.h"
 
 static bool isInGame = false;
 

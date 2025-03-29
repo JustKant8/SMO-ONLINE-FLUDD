@@ -4,6 +4,10 @@
 
 #include "actors/PuppetActor.h"
 #include "actors/PuppetHackActor.h"
+#include "actors/FluddBase.h"
+#include "actors/FluddTurbo.hpp"
+#include "actors/FluddHover.hpp"
+#include "actors/FluddRocket.hpp"
 
 namespace al
 {
@@ -67,10 +71,14 @@ namespace al
     class WobbleMapParts;
 } // namespace al
 
-__attribute((used)) static al::NameToCreator<al::createActor> actorEntries[] = {
+__attribute((used)) static al::NameToCreator<al::createActor> actorEntries[] = {  //
     // CUSTOM ACTOR ENTRIES HERE
     {"PuppetActor", &al::createCustomActor<PuppetActor>},
     {"PuppetHackActor", &al::createCustomActor<PuppetHackActor>},
+    {"FluddBase", &al::createCustomActor<FluddBase>},
+    {"FluddHover", &al::createCustomActor<ca::FluddHover>},
+    {"FluddRocket", &al::createCustomActor<ca::FluddRocket>},
+    {"FluddTurbo", &al::createCustomActor<ca::FluddTurbo>},
     // VANILLA ACTOR ENTRIES
     {"AchievementNpc", &al::createActorFunction<class AchievementNpc>},
     {"AirBubble", &al::createActorFunction<class AirBubble>},

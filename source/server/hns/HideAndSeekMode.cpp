@@ -19,6 +19,8 @@
 #include "server/gamemode/GameModeManager.hpp"
 #include "server/gamemode/GameModeFactory.hpp"
 
+#include "layouts/FluddIcon.h"
+
 #include "basis/seadNew.h"
 #include "server/hns/HideAndSeekConfigMenu.hpp"
 
@@ -45,6 +47,15 @@ void HideAndSeekMode::init(const GameModeInitInfo& info) {
         
         mModeTimer = new GameModeTimer();
     }
+
+    //fluddModifier = &Fludd();
+
+    //fluddModifier->stageSceneRef = mCurScene;
+
+   // fluddModifier->layout = new FluddIcon("FluddIcon", *info.mLayoutInitInfo);
+    //fluddModifier->layout->appear();
+
+    //fluddModifier->initModels(*info.mActorInitInfo);
 
     mModeLayout = new HideAndSeekIcon("HideAndSeekIcon", *info.mLayoutInitInfo);
 
@@ -210,6 +221,14 @@ void HideAndSeekMode::update() {
             }
         }
     }
+
+    //add fludd update funcs here
+
+    if (!FluddBase::playerFludd->isConnecting) {
+        FluddBase::playerFludd->connect(playerBase);
+    }
+
+    //end fludd funcs
 
     if (al::isPadTriggerUp(-1) && !al::isPadHoldZL(-1))
     {

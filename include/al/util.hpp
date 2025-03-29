@@ -47,6 +47,8 @@ namespace al
 
 #include "types.h"
 
+#include "al/MtxConnector/MtxConnector.h"
+
 template<class T>
 al::LiveActor* createActorFunction(const char *name);
 
@@ -217,6 +219,24 @@ namespace al
     bool tryStartSklAnimIfNotPlaying(al::LiveActor *actor, const char * animName);
     
     bool tryStartSklAnimIfExist(al::LiveActor *actor, const char * animName);
+
+    void stopAction(al::LiveActor*);
+
+    bool isSklAnimPlaying(al::LiveActor const*, int);
+
+    bool isSklAnimEnd(al::LiveActor const*, int);
+
+    void setSklAnimFrame(al::LiveActor*, float, int);
+
+    void startSklAnim(al::LiveActor*, char const*);
+
+    const char* getPlayingSklAnimName(al::LiveActor, int);
+
+    float getSklAnimFrame(al::LiveActor const*, int);
+
+    void setActionFrame(al::LiveActor*, float);
+
+    bool tryStartActionIfNotPlaying(al::LiveActor*, char const*);
 
     // byml stuff
 
@@ -389,6 +409,7 @@ namespace al
     void initActorCommon(al::LiveActor *actor, al::ActorInitInfo const &info, char const *dataFolder, char const *archiveName, char const *suffix); // not a real symbol
     void initActorSuffix(al::LiveActor*, al::ActorInitInfo const&, char const*);
     void initActorInitInfo(al::ActorInitInfo *,al::Scene const*,al::PlacementInfo const*,al::LayoutInitInfo const*,al::ActorFactory const*,al::SceneMsgCtrl *,GameDataHolderBase *);
+    void initCreateActorNoPlacementInfo(al::LiveActor* actor, al::ActorInitInfo const& initInfo);
 
     // misc
 
@@ -511,4 +532,96 @@ namespace al
     void setDitherAnimMaxAlpha(al::LiveActor *, float);
     void setDitherAnimClippingJudgeLocalOffset(al::LiveActor *, sead::Vector3f const&);
     void setDitherAnimClippingJudgeParam(al::LiveActor *, const char *);
-}
+
+
+        void attachMtxConnectorToJoint(al::MtxConnector*, al::LiveActor const*, char const*);
+
+    void attachMtxConnectorToJoint(al::MtxConnector*, al::LiveActor const*, char const*,
+                                   sead::Vector3f const&, sead::Vector3f const&);
+
+    MtxConnector* createMtxConnector(al::LiveActor const*);
+
+    void connectPoseQT(al::LiveActor*, al::MtxConnector const*);
+
+    void connectPoseQT(al::LiveActor*, al::MtxConnector const*, sead::Quat<float> const&,
+                       sead::Vector3<float> const&);
+
+    void resetMtxPosition(al::LiveActor*, sead::Matrix34<float> const&);
+
+    void getJointLocalTrans(sead::Vector3<float>*, al::LiveActor const*, char const*);
+    void calcJointQuat(sead::Quat<float>*, al::LiveActor const*, char const*);
+    void calcJointScale(sead::Vector3<float>*, al::LiveActor const*, char const*);
+
+    void attachMtxConnectorToMtxPtr(al::MtxConnector*, sead::Matrix34<float> const*);
+
+    void attachMtxConnectorToActor(al::MtxConnector*, al::LiveActor const*);
+
+    void disconnectMtxConnector(al::MtxConnector*);
+
+    sead::Matrix34f* getJointMtxPtr(const LiveActor*, const char*);
+
+    bool isMtxConnectorConnecting(al::MtxConnector const*);
+
+    void setRotate(al::LiveActor*, sead::Vector3<float> const&);
+
+    // void setRotateX();
+
+    void setRotateY(al::LiveActor*, float);
+
+    // sead::Quatf* getRotatePtr(al::LiveActor const*); not working
+
+    void calcQuatFront(sead::Vector3f*, al::LiveActor const*);
+
+    void calcQuatUp(sead::Vector3f*, al::LiveActor const*);
+
+    sead::Quatf* getQuatPtr(al::LiveActor*);
+
+    bool isExistJoint(al::LiveActor const*, char const*);
+
+    bool isExistJoint(al::ModelKeeper const*, char const*);
+
+    long getJointName(al::ModelKeeper const*, int);
+
+    void calcMtxLocalTrans();
+
+    bool isExistJointControllerKeeper(al::LiveActor const*);
+
+    // void registerJointController(al::LiveActor const*, al::JointControllerBase*);
+
+    void showModelIfHide(al::LiveActor*);
+
+    void hideModelIfShow(al::LiveActor*);
+
+    bool isCollided(al::LiveActor const*);
+
+    bool isCollidedGround(al::LiveActor const*);
+
+    bool isCollidedWall(al::LiveActor const*);
+
+    bool isCollidedCeiling(al::LiveActor const*);
+
+    al::HitSensor* getCollidedWallSensor(al::LiveActor const*);
+
+    al::HitSensor* tryGetCollidedWallSensor(al::LiveActor const*);
+
+    al::HitSensor* tryGetCollidedGroundSensor(al::LiveActor const*);
+    al::HitSensor* tryGetCollidedCeilingSensor(al::LiveActor const*);
+
+    al::HitSensor* getCollidedGroundSensor(al::LiveActor const*);
+
+    al::HitSensor* getCollidedCeilingSensor(al::LiveActor const*);
+
+    void invalidateCollisionParts(al::LiveActor*);
+
+    void validateCollisionParts(al::LiveActor*);
+
+    bool isActiveCamera(al::CameraTicket const*);
+
+    const char* getPlayingVisAnimName(al::LiveActor const*);
+
+    const char* getModelName(al::LiveActor const*);
+
+    sead::Matrix34f* getJointMtxPtr(al::LiveActor const*, char const*);
+
+    void setVelocityToFront(LiveActor*, float);
+    }

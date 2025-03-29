@@ -18,6 +18,8 @@
 #include "sead/math/seadVector.h"
 #include "server/DeltaTime.hpp"
 
+#include "actors/FluddBase.h"
+
 #include "logger.hpp"
 #include "puppets/PuppetInfo.h"
 #include "puppets/HackModelHolder.hpp"

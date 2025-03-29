@@ -21,6 +21,8 @@
 #include "server/gamemode/GameModeBase.hpp"
 #include "server/hns/HideAndSeekMode.hpp"
 
+#include "main.hpp"
+
 static const char *subActorNames[] = {
     "顔", // Face
     "目", // Eye

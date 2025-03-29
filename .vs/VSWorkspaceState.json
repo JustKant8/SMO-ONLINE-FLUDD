@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\include\\actors",
+    "\\source\\actors",
+    "\\source\\puppets",
+    "\\source\\server",
+    "\\source\\server\\gamemode",
+    "\\source\\server\\gamemode\\modifiers",
+    "\\source\\states"
+  ],
+  "PreviewInSolutionExplorer": false
+}

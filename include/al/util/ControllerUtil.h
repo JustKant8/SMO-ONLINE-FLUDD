@@ -8,6 +8,8 @@ namespace al {
     bool isPadTriggerLeft(int port);
     bool isPadTriggerRight(int port);
 
+    bool isPadTriggerPressLeftStick(int);  // press left stick
+
     bool isPadTriggerA(int port);
     bool isPadTriggerB(int port);
     bool isPadTriggerX(int port);

@@ -12,6 +12,7 @@
 #include "layouts/HideAndSeekIcon.h"
 #include "prim/seadSafeString.h"
 #include "server/gamemode/GameModeConfigMenu.hpp"
+//#include "fludd.h"
 
 // enum for defining game mode types
 enum GameMode : s8 {
@@ -23,6 +24,7 @@ enum GameMode : s8 {
 struct GameModeInitInfo {
     GameModeInitInfo(al::ActorInitInfo* info, al::Scene *scene){
         mLayoutInitInfo = info->mLayoutInitInfo;
+        mActorInitInfo = info;
         mPlayerHolder = info->mActorSceneInfo.mPlayerHolder;
         mSceneObjHolder = info->mActorSceneInfo.mSceneObjHolder;
         mScene = scene;
@@ -35,6 +37,7 @@ struct GameModeInitInfo {
     }
     
     al::LayoutInitInfo* mLayoutInitInfo;
+    al::ActorInitInfo* mActorInitInfo;
     al::PlayerHolder* mPlayerHolder;
     al::SceneObjHolder *mSceneObjHolder;
     al::Scene* mScene;
@@ -66,6 +69,7 @@ protected:
     GameMode mMode = GameMode::NONE;
     StageScene* mCurScene = nullptr;
     PuppetHolder *mPuppetHolder = nullptr;
+    //FLUDD* fluddModifier = nullptr;
     bool mIsActive = false;
     bool mIsFirstFrame = true;
 };

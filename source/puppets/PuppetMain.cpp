@@ -2,6 +2,8 @@
 #include "logger.hpp"
 #include "main.hpp"
 
+#include "actors/FluddBase.h"
+
 al::LiveActor *createPuppetActorFromFactory(al::ActorInitInfo const &rootInitInfo, al::PlacementInfo const &rootPlacementInfo, bool isDebug) {
     al::ActorInitInfo actorInitInfo = al::ActorInitInfo();
     actorInitInfo.initViewIdSelf(&rootPlacementInfo, rootInitInfo);
@@ -64,9 +66,12 @@ void initPuppetActors(al::Scene *scene, al::ActorInitInfo const &rootInfo, char 
         {
             createPuppetActorFromFactory(rootInfo, playerPlacement, false);
         }
+
+        //init Fludd for player
+        FluddBase::initAllActors(rootInfo, playerPlacement);
         
         // create a debug puppet for testing purposes
-        // createPuppetActorFromFactory(rootInfo, playerPlacement, true);
+        createPuppetActorFromFactory(rootInfo, playerPlacement, true);
     }
 
     al::initPlacementObjectMap(scene, rootInfo, listName); // run init for ObjectList after we init our puppet actors 
